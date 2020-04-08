@@ -34,22 +34,33 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
             {
                 PrintLine(FString::Printf(TEXT("The word has %i characters"), HiddenWord.Len()));
             }
-            PrintLine(TEXT("You Have Lost!")); 
-            bGameOver = true;
-        } 
-        PrintLine(TEXT("Press Enter to play again."));
-    }    
+            --Lives;
+            if (Lives > 0 )
+            {
+                PrintLine(FString::Printf(TEXT("You have %i Lives Left"), Lives));
+                PrintLine(TEXT("Try again."));
+                
+            }
+            else
+            {
+                PrintLine(TEXT("You Have Lost!")); 
+                EndGame();
+                
+            }
+        }   
+    }   
 }
 
 void UBullCowCartridge::SetupGame()
 {
         HiddenWord = TEXT("oneway");  
-        Lives = 4; 
+        Lives = HiddenWord.Len(); 
         bGameOver = false;
         
         //Welcome the player
         PrintLine(TEXT("Welcome to Cows and Bulls!"));
         PrintLine(FString::Printf(TEXT("Guess the %i letter word"), HiddenWord.Len()));  //Magic number remove
+        PrintLine(FString::Printf(TEXT("You have %i Lives"), Lives));
         PrintLine(TEXT("Type your Guess and press Enter to continue...."));
 }
 
