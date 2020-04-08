@@ -8,40 +8,55 @@ void UBullCowCartridge::BeginPlay() // When the game starts
     SetupGame();
     
     PrintLine(FString::Printf(TEXT("The Hidden Word is : %s"), *HiddenWord));  // Debug line
-
-    //Welcome the player
-    PrintLine(TEXT("Welcome to Cows and Bulls!"));
-    PrintLine(FString::Printf(TEXT("Guess the %i letter word"), HiddenWord.Len()));  //Magic number remove
-    PrintLine(TEXT("Type your Guess and press Enter to continue...."));
-
+ 
     //Prompt Player for Guess
 }
 
 void UBullCowCartridge::OnInput(const FString& Input) // When the player hits enter
 {
-    ClearScreen();
-
-    
-    //Checking Player Guess
-    PrintLine(Input);
-    if (Input == HiddenWord)
+    if (bGameOver)
     {
-        PrintLine(TEXT("You have Won!"));
+        ClearScreen();
+        SetupGame();
     }
     else
     {
-        PrintLine(TEXT("You have Lost!"));
-        if (Input.Len() != HiddenWord.Len())
+       //Checking Player Guess
+        PrintLine(Input);
+        if (Input == HiddenWord)
         {
-            PrintLine(FString::Printf(TEXT("The word has %i characters"), HiddenWord.Len()));
+            PrintLine(TEXT("You have Won!"));
+            bGameOver = true;
         }
-    }
+        else
+        {
+            if (Input.Len() != HiddenWord.Len())
+            {
+                PrintLine(FString::Printf(TEXT("The word has %i characters"), HiddenWord.Len()));
+            }
+            PrintLine(TEXT("You Have Lost!")); 
+            bGameOver = true;
+        } 
+        PrintLine(TEXT("Press Enter to play again."));
+    }    
 }
 
 void UBullCowCartridge::SetupGame()
 {
         HiddenWord = TEXT("oneway");  
         Lives = 4; 
+        bGameOver = false;
+        
+        //Welcome the player
+        PrintLine(TEXT("Welcome to Cows and Bulls!"));
+        PrintLine(FString::Printf(TEXT("Guess the %i letter word"), HiddenWord.Len()));  //Magic number remove
+        PrintLine(TEXT("Type your Guess and press Enter to continue...."));
+}
+
+void UBullCowCartridge::EndGame()
+{
+    bGameOver = true;
+    PrintLine(TEXT("Press Enter to play Again."));
 }
 
     //Check if Isogram
