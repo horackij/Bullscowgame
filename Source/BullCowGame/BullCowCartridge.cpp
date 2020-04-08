@@ -5,9 +5,8 @@ void UBullCowCartridge::BeginPlay() // When the game starts
 {
     Super::BeginPlay();
     
-    InitGame();//setting up the game
+    SetupGame();
     
-
     //Welcome the player
     PrintLine(TEXT("Welcome to Cows and Bulls!"));
     PrintLine(TEXT("Guess the 4 letter word"));  //Magic number remove
@@ -32,7 +31,8 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
         
     }
 }
-void UBullCowCartridge::InitGame()
+
+void UBullCowCartridge::SetupGame()
 {
         HiddenWord = TEXT("oneway");  
         Lives = 4; 
