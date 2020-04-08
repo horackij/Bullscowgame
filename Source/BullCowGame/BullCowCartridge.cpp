@@ -19,6 +19,7 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
 {
     ClearScreen();
 
+    
     //Checking Player Guess
     PrintLine(Input);
     if (Input == HiddenWord)
@@ -28,7 +29,10 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
     else
     {
         PrintLine(TEXT("You have Lost!"));
-        
+        if (Input.Len() != HiddenWord.Len())
+        {
+            PrintLine(TEXT("Wrong number of characters"));
+        }
     }
 }
 
