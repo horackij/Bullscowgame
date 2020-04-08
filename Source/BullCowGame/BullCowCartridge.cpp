@@ -77,9 +77,15 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
 
 bool UBullCowCartridge::IsIsogram(FString Word) const
 {
-    for (int32 Index = 0; Index < Word.Len(); Index++)
+    
+    
+    for (int32 Index = 0, Comparision = Index + 1; Comparision < Word.Len(); Comparision++)
     {
-        PrintLine(TEXT("%c"), Word[Index]);
+        if (Word[Index] == Word[Comparision])
+        {
+            return false;
+        }
+        
     }
     return true;
 }
