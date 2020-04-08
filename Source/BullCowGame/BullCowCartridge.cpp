@@ -4,12 +4,12 @@
 void UBullCowCartridge::BeginPlay() // When the game starts
 {
     Super::BeginPlay();
-    PrintLine("Welcome to Cows and Bulls!");
-    PrintLine("Please type something and press enter");
+    PrintLine(TEXT("Welcome to Cows and Bulls!"));
+    PrintLine(TEXT("Please type something and press enter"));
 }
 
 void UBullCowCartridge::OnInput(const FString& Input) // When the player hits enter
 {
     ClearScreen();
-    FString HiddenWord = "oneway";
+    FString HiddenWord = TEXT("oneway");
 }
