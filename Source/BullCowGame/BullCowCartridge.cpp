@@ -75,7 +75,7 @@ void UBullCowCartridge::ProcessGuess(FString Guess)
    
 }
 
-bool UBullCowCartridge::IsIsogram(FString Word)
+bool UBullCowCartridge::IsIsogram(FString Word) const
 {
 
     return true;}
