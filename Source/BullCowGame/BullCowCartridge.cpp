@@ -5,12 +5,13 @@
 void UBullCowCartridge::BeginPlay() // When the game starts
 {
     Super::BeginPlay();
+
+    FMath::RandRange(0,10);
+
     GetValidWords(Words);
 
     SetupGame();
     
-    PrintLine(FString::Printf(TEXT("The Hidden Word is : %s"), *HiddenWord));  // Debug line
-    PrintLine(FString::Printf(TEXT("The number of valid words is: %i"), GetValidWords(Words).Num()));
 }
 
 void UBullCowCartridge::OnInput(const FString& PlayerInput) // When the player hits enter
@@ -28,7 +29,7 @@ void UBullCowCartridge::OnInput(const FString& PlayerInput) // When the player h
 
 void UBullCowCartridge::SetupGame()
 {
-        HiddenWord = TEXT("oneway");  
+        HiddenWord = GetValidWords(Words)[FMath::RandRange(0,GetValidWords(Words).Num()-1)];
         Lives = HiddenWord.Len(); 
         bGameOver = false;
         
@@ -37,6 +38,7 @@ void UBullCowCartridge::SetupGame()
         PrintLine(FString::Printf(TEXT("Guess the %i letter word"), HiddenWord.Len()));  //Magic number remove
         PrintLine(FString::Printf(TEXT("You have %i Lives"), Lives));
         PrintLine(TEXT("Type your Guess and press Enter to continue...."));
+        PrintLine(FString::Printf(TEXT("The Hidden Word is : %s"), *HiddenWord));  // Debug line
 }
 
 void UBullCowCartridge::ProcessGuess(const FString& Guess)
