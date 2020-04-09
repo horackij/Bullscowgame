@@ -77,8 +77,7 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess)
     {
         PrintLine(TEXT("You Have Lost!")); 
         EndGame();
-    } 
-    
+    }   
 }
 
 bool UBullCowCartridge::IsIsogram(const FString& Word) const
